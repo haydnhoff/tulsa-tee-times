@@ -189,14 +189,14 @@ export default function App() {
         <div key={course}>
           <h2 style={styles.groupHeader}>{course}</h2>
           <div style={styles.grid}>
-            {times.map((t, i) => <TeeTimeCard key={i} t={t} />)}
+            {times.map((t, i) => <TeeTimeCard key={i} t={t} date={date} />)}
           </div>
         </div>
       ))}
 
       {!loading && !grouped && filtered.length > 0 && (
         <div style={styles.grid}>
-          {filtered.map((t, i) => <TeeTimeCard key={i} t={t} />)}
+          {filtered.map((t, i) => <TeeTimeCard key={i} t={t} date={date} />)}
         </div>
       )}
 
@@ -213,7 +213,7 @@ export default function App() {
   );
 }
 
-function TeeTimeCard({ t }) {
+function TeeTimeCard({ t, date }) {
   const totalFee = (parseFloat(t.green_fee) || 0) + (parseFloat(t.cart_fee) || 0);
   return (
     <div style={styles.card}>
@@ -231,7 +231,7 @@ function TeeTimeCard({ t }) {
           {t.available_spots} spot{t.available_spots !== 1 ? 's' : ''}
         </span>
       </div>
-      <a href={t.bookingUrl} target="_blank" rel="noopener noreferrer" style={styles.bookBtn}>
+      <a href={`${t.bookingUrl}?date=${toAPIDate(date)}`} target="_blank" rel="noopener noreferrer" style={styles.bookBtn}>
         Book
       </a>
     </div>
