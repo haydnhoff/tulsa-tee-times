@@ -1,0 +1,20 @@
+{
+  "name": "tulsa-tee-times",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "node server/index.js",
+    "client": "cd client && npx vite --port 3000",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "setup": "npm install && cd client && npm install",
+    "build": "cd client && npm install --cache /tmp/npm-cache && npx vite build",
+    "start": "NODE_ENV=production node server/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "concurrently": "^8.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.0",
+    "node-cache": "^5.1.2"
+  }
+}
